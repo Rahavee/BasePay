@@ -9,13 +9,35 @@ except:
 conn.set_client_encoding('UTF8')
 
 cur = conn.cursor()
-jobs = pdf.main()
+names= pdf.main()
 
-for i in range(len(jobs)):
+# for i in range(len(jobs)):
+#     cur.execute(
+#         "INSERT INTO job_title (position) "
+#         "VALUES (%s)",
+#         (jobs[i],))
+
+for i in range(len(names[0])):
     cur.execute(
-        "INSERT INTO job_title (position) "
-        "VALUES (%s)",
-        (jobs[i],))
+        'INSERT INTO names ("first_name", "last_name") '
+        'VALUES (%s,%s)',
+        (names[0][i], names[1][i])
+    )
+
+# for i in range(len(pay)):
+#     jobID = 0
+#     for j in range(len(jobs)):
+#         if jobsList[i]==jobs[j]:
+#             jobID= j+1
+#     cur.execute(
+#         'INSERT INTO salary(user_id, job_id, pay, year)'
+#         'VALUES (%s,%s,%s,%s)',
+#         (i+1, jobID, pay[i], 2019)
+#     )
+
+
+
+
 
 conn.commit()
 cur.close()

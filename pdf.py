@@ -116,12 +116,15 @@ def main():
     names = []
     pay = []
     jobs = []
+    jobsList = []
     for k in range(0, len(dataCum)):
         if k % 3 == 0:
             names.append(dataCum[k])
         if k % 3 == 2:
-            pay.append(dataCum[k])
+            payWithoutSign=re.sub("[$,]","",dataCum[k])
+            pay.append(int(payWithoutSign))
         if k % 3 == 1:
+            jobsList.append(dataCum[k])
             flagOriginal = True
             for u in range(len(jobs)):
                 if jobs[u] == dataCum[k]:
@@ -131,9 +134,25 @@ def main():
 
 
 
-    print(jobs)
+    firstName=[]
+    lastName=[]
+    for h in range(len(names)):
+        splitNames = names[h].split(",")
 
-    return jobs
+        if len(splitNames)==1:
+            firstAndMiddle = splitNames[0].split(" ")
+            firstName.append(firstAndMiddle[0])
+            lastName.append(None)
+        else:
+            firstAndMiddle = splitNames[1].split(" ")
+            firstName.append(firstAndMiddle[0])
+            lastName.append(splitNames[0])
+
+    print(len(firstName))
+    print(len(pay))
 
 
-main()
+    return firstName, lastName
+
+
+

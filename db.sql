@@ -1,7 +1,7 @@
 CREATE TABLE salary (
     "user_id" int,
     "job_id" int,
-    "salary" int,
+    "pay" varchar(16),
     "year" int
 );
 
@@ -13,6 +13,6 @@ CREATE TABLE job_title (
 
 CREATE TABLE names (
   "user_id" SERIAL,
-  "first name" varchar(16),
-  "last name" varchar(16)
+  "first_name" varchar(32),
+  "last_name" varchar(32)
 );
